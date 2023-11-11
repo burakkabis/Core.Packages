@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Persistence.Paging;
 
+//Butun veriler sayfaya gelmesin diye yaptigimiz querylerin sonuclari gelsin sadece diye queryable yaptim.
 public static class IQueryablePaginateExtensions
 {
     public static async Task<Paginate<T>> ToPaginateAsync<T>(

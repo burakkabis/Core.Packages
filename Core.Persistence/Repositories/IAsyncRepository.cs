@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Core.Persistence.Repositories;
 
+//IQuery:Ilgili domain nesnesine . diyerek sql sorgusu yazmamizi saglar.
 public interface IAsyncRepository<TEntity,TEntityId> : IQuery<TEntity>
     where TEntity : Entity<TEntityId>
 
@@ -18,7 +19,7 @@ public interface IAsyncRepository<TEntity,TEntityId> : IQuery<TEntity>
     Task<TEntity> GetAsync(
         Expression<Func<TEntity, bool>> predicate,
         Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,//join atabilmemizi saglar.
-        bool withDeleted = false,
+        bool withDeleted = false,//soft delete calistigim icin silinenlerin getirilmemesi icin false yaptim.
         bool enableTracking = true,
         CancellationToken cancellationToken = default);
 
@@ -61,7 +62,7 @@ public interface IAsyncRepository<TEntity,TEntityId> : IQuery<TEntity>
     Task<ICollection<TEntity>> UpdateRangeAsync(ICollection<TEntity> entities);
 
     Task<TEntity> DeleteAsync(TEntity entity, bool permanent = false); //permanent:Veri tabanindan kalici olarak ucurmuyor.Silindi olarak isaretliyor.
-
+                                                                       //Yani soft delete yapiyor.
     Task<ICollection<TEntity>> DeleteRangeAsync(ICollection<TEntity> entities, bool permanent = false);
 
 }
