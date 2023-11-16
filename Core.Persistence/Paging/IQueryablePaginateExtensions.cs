@@ -18,6 +18,7 @@ public static class IQueryablePaginateExtensions
         )
     {
         int count = await source.CountAsync(cancellationToken).ConfigureAwait(false);
+        //index*size kadar data atlariz. Atladiktan sonra Take(size)  size kadar data aliriz.
 
         List<T> items = await source.Skip(index * size).Take(size).ToListAsync(cancellationToken).ConfigureAwait(false);
 

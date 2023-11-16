@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Core.Persistence.Repositories;
 
-//IQuery:Ilgili domain nesnesine . diyerek sql sorgusu yazmamizi saglar.
+//IQuery:Ilgili domain nesnesine .(nokta) diyerek sql sorgusu yazmamizi saglar.
 public interface IAsyncRepository<TEntity,TEntityId> : IQuery<TEntity>
     where TEntity : Entity<TEntityId>
 
