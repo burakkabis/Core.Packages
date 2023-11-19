@@ -15,7 +15,7 @@ public class ExceptionMiddleware
    // private readonly IHttpContextAccessor _contextAccessor;
    // private readonly LoggerServiceBase _loggerService;
 
-    public ExceptionMiddleware(RequestDelegate next,HttpExceptionHandler httpException)
+    public ExceptionMiddleware(RequestDelegate next)
        // ,IHttpContextAccessor contextAccessor) //LoggerServiceBase loggerService)
     {
         _next = next;
