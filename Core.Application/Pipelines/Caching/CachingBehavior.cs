@@ -10,7 +10,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Core.Application.Pipelines.Caching;
-//Log impelentation yap
+
 public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>, ICachableRequest
 {
@@ -18,9 +18,9 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
     private readonly IDistributedCache _cache;
     private readonly ILogger<CachingBehavior<TRequest, TResponse>> _logger;
 
-    public CachingBehavior(IDistributedCache cache, ILogger<CachingBehavior<TRequest, TResponse>> logger, IConfiguration configuration)
+    public CachingBehavior(IDistributedCache cache,ILogger<CachingBehavior<TRequest,TResponse>> logger,IConfiguration configuration)
     {
-        _cacheSettings = configuration.GetSection("CacheSettings").Get<CacheSettings>() ?? throw new InvalidOperationException();
+        _cacheSettings = configuration.GetSection("CacheSettings").Get<CacheSettings>()??throw new InvalidOperationException();
         _cache = cache;
         _logger = logger;
     }
@@ -37,7 +37,7 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
         if (cachedResponse != null)
         {
             response = JsonSerializer.Deserialize<TResponse>(Encoding.Default.GetString(cachedResponse));
-            _logger.LogInformation($"Fetched from Cache -> {request.CacheKey}");
+             _logger.LogInformation($"Fetched from Cache -> {request.CacheKey}");
         }
         else
         {
