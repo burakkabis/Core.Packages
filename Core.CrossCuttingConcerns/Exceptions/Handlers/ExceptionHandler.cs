@@ -17,6 +17,8 @@ public abstract class ExceptionHandler
             _ => HandleException(exception) //_ (bir sey verilmezse yani hicbir sarta uymazsa HandleException anlami tasir.)
         };
 
+
+    //Gelen exception businessException ise alttaki HandleEcveption calisacak.
     protected abstract Task HandleException(BusinessException businessException);
     protected abstract Task HandleException(ValidationException validationException);
     protected abstract Task HandleException(Exception exception);

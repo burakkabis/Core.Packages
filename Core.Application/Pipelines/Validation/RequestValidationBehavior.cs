@@ -10,6 +10,9 @@ using ValidationException = Core.CrossCuttingConcerns.Exceptions.Types.Validatio
 
 namespace Core.Application.Pipelines.Validation;
 
+//PIPELINE:Command ve querylere uygulanan middlewarelerdir.
+//TRequest => CreateBrandCommand istegi gibi dusunebiliriz.
+
 public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
@@ -36,6 +39,7 @@ public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<
 
         if (errors.Any())
             throw new ValidationException(errors);
+        //Hata yoksa command i yani methodu calistiracak.
         TResponse response = await next();
         return response;
     }

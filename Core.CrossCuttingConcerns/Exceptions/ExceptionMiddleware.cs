@@ -13,6 +13,7 @@ namespace Core.CrossCuttingConcerns.Exceptions;
 
 public class ExceptionMiddleware
 {
+    //_next : invoke edilecek methodu temsil eder.
     private readonly RequestDelegate _next;
     private readonly HttpExceptionHandler _httpExceptionHandler;
     private readonly IHttpContextAccessor _contextAccessor;
@@ -27,11 +28,12 @@ public class ExceptionMiddleware
         _loggerService = loggerService;
     }
 
+    //Butun methodlar burdan gecer.Bu sebeple her yere try catch yazmamiza gerek kalmaz.
     public async Task Invoke(HttpContext context)
     {
         try
         {
-            await _next(context);
+            await _next(context);//API den gelen istegi calistirir/
         }
         catch (Exception exception)
         {
