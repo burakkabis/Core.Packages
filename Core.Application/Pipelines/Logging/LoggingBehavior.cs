@@ -15,7 +15,7 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
     where TRequest : IRequest<TResponse>, ILoggableRequest
 {
 
-    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IHttpContextAccessor _httpContextAccessor;//Hangi kullancii log yapti onu okumamizi yani kullanici bilgilerini okumamizi saglar.
     private readonly LoggerServiceBase _loggerServiceBase;
 
     public LoggingBehavior(IHttpContextAccessor httpContextAccessor, LoggerServiceBase loggerServiceBase)

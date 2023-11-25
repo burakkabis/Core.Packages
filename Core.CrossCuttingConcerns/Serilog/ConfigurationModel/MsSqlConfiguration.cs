@@ -11,6 +11,7 @@ namespace Core.CrossCuttingConcerns.Serilog.ConfigurationModel;
 
 public class MsSqlConfiguration
 {
+    //MsSql e log yazarken ihtiyacimiz olanlar.
     public string ConnectionString { get; set; }
     public string TableName { get; set; }
     public bool AutoCreateSqlTable { get; set; }

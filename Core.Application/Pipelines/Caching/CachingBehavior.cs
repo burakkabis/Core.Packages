@@ -15,7 +15,7 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
     where TRequest : IRequest<TResponse>, ICachableRequest
 {
     private readonly CacheSettings _cacheSettings;
-    private readonly IDistributedCache _cache;
+    private readonly IDistributedCache _cache;//Farkli cache ortamlarina (inMemory,Redis...) gecis yapmamizi saglar.
     private readonly ILogger<CachingBehavior<TRequest, TResponse>> _logger;
 
     public CachingBehavior(IDistributedCache cache,ILogger<CachingBehavior<TRequest,TResponse>> logger,IConfiguration configuration)

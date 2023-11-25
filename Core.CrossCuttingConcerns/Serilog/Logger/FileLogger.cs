@@ -12,7 +12,7 @@ namespace Core.CrossCuttingConcerns.Serilog.Logger;
 
 public class FileLogger : LoggerServiceBase
 {
-    private readonly IConfiguration _configuration;
+    private readonly IConfiguration _configuration;//appsettings i okumak icin.
 
     public FileLogger(IConfiguration configuration)
     {
@@ -25,7 +25,7 @@ public class FileLogger : LoggerServiceBase
         string logFilePath = string.Format(format: "{0}{1}", arg0: Directory.GetCurrentDirectory() + logConfig.FolderPath, arg1: ".txt");
 
         Logger = new LoggerConfiguration().WriteTo.File(
-            logFilePath, rollingInterval: RollingInterval.Day,
+            logFilePath, rollingInterval: RollingInterval.Day,//Her gun yeni bir dosya olusturur.
             retainedFileCountLimit: null,
             fileSizeLimitBytes: 5000000,
             outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}"
