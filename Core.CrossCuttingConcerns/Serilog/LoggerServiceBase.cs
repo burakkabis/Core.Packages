@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Core.CrossCuttingConcerns.Serilog;
+
 public abstract class LoggerServiceBase
 {
     protected ILogger Logger { get; set; }
